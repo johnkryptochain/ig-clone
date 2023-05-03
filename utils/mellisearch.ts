@@ -1,14 +1,13 @@
 import { MeiliSearch } from 'meilisearch'
 
 const searchClient = new MeiliSearch({
-    host: 'https://ms-8fe4e9255173-3570.sfo.meilisearch.io',
-    apiKey: '810053f3bd7b19062a5c212e1bef28fc792e60f739439411cfc23bdebaef189e',
+    host: 'https://ms-cb4689884309-3570.sfo.meilisearch.io',
+    apiKey: 'b0cc5c308cb3e2915ce8635cf0105ea1fb07bacb0e619b3e8b4d2e8f820fb75b',
 })
 
-// update settings to search by name attribute
-searchClient.getIndex('users').then(index => {
-    if(index.uid !== 'users') {
-        searchClient.index('users').updateSettings({
+searchClient.getIndex('users')
+    .then((index: Index) => {
+        index.updateSettings({
             searchableAttributes: [
                 'name'
             ],
@@ -16,7 +15,22 @@ searchClient.getIndex('users').then(index => {
                 'name'
             ],
         })
-    }
-})
+    })
+    .catch((error: any) => {
+        if (error.errorCode === 'index_not_found') {
+            searchClient.createIndex({ uid: 'users' }).then((index: Index) => {
+                index.updateSettings({
+                    searchableAttributes: [
+                        'name'
+                    ],
+                    sortableAttributes: [
+                        'name'
+                    ],
+                })
+            })
+        } else {
+            console.error(error)
+        }
+    })
 
 export default searchClient
