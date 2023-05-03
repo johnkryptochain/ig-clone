@@ -1,4 +1,6 @@
 import { MeiliSearch } from 'meilisearch'
+import { MeiliSearch, Index } from 'meilisearch'
+
 
 const searchClient = new MeiliSearch({
     host: 'https://ms-cb4689884309-3570.sfo.meilisearch.io',
