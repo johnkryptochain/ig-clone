@@ -1,8 +1,8 @@
 import { MeiliSearch } from 'meilisearch'
 
 const searchClient = new MeiliSearch({
-    host: 'https://ms-170261f76648-3570.lon.meilisearch.io',
-    apiKey: '54bc48fb95b47c1cb90f90d9bf175af28f0a026d1dadc68cec3b97c9156975dc',
+    host: 'https://ms-8fe4e9255173-3570.sfo.meilisearch.io',
+    apiKey: '810053f3bd7b19062a5c212e1bef28fc792e60f739439411cfc23bdebaef189e',
 })
 
 // update settings to search by name attribute
