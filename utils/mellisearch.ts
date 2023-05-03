@@ -1,4 +1,3 @@
-import { MeiliSearch } from 'meilisearch'
 import { MeiliSearch, Index } from 'meilisearch'
 
 
